@@ -1,0 +1,121 @@
+@import 'reset.scss';
+
+$color-grey : rgb(153, 154, 155);
+$color-grey-light : rgb(182, 183, 186);
+
+$color-1 : rgb(234, 235, 237);
+$color-2 : rgb(70, 77, 89);
+$color-3 : rgb(3, 12, 25);
+
+@font-face{
+  font-family: title-font;
+  src: url('../font/BILLY ARGEL.otf');
+}
+
+$base-font: Helvetica, sans-sherif;
+$title-font: title-font, sans-sherif;
+
+$font-size-1 : (35/16) + em;
+
+@mixin box-padding(){
+  padding: 25px 45px;
+}
+
+@mixin box-padding-mobile(){
+  padding: 10px 5px;
+}
+
+@mixin section-padding(){
+  margin: 35px 60px; 
+}
+
+@mixin border-radius($radius){
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin border-dotted($color, $width : 1em){
+  border-bottom: {
+    width: $width;
+    color: $color;
+    style: dotted;
+  }
+}
+
+body{
+  background: $color-grey;
+  font-family: $base-font;
+}
+
+header{
+  h1{
+    font-family: $title-font;
+    font-size: 5em;
+    @include border-dotted(rgb(131, 175, 247), 5px);
+    
+    span{
+      font-family: $base-font;
+      padding-left: 25px;
+    }
+  }
+  
+  p{
+    @include box-padding;
+    $size : (22/16) + em;
+    $line-height : 2em;
+    font: #{$size}/#{$line-height} $base-font;
+  }
+}
+
+section{
+  background: $color-grey-light;
+  @include section-padding();
+  @include border-radius(20px);
+  border-color: $color-3;
+  border-width: 4px;
+  border-style: solid;
+  
+  p{
+    color: $color-1;
+    @include box-padding();
+  }
+  
+  h2{
+    color: $color-2;
+    font:{
+      size: $font-size-1;
+      weight: 600;
+    }
+  }
+}
+
+@for $i from 1 through 3{
+  #section-#{$i} {
+    padding-left: ($i * 10) + px;
+    p {
+      font-size: 1em * ($i/1.5)
+    }
+  }
+}
+
+section{
+  div{
+    float: left;
+    width: 50%;
+  }
+  float: left;
+  &:after{
+    clear: both; 
+  }
+}
+
+
+@media screen and (max-width: 400px){
+  section{
+    p{
+      @include box-padding-mobile();
+    }
+  }
+}
