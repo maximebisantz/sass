@@ -2,10 +2,14 @@
 
 $color-grey : rgb(153, 154, 155);
 $color-grey-light : rgb(182, 183, 186);
+$color-grey-dark : rgb(51, 52, 53);
 
 $color-1 : rgb(234, 235, 237);
 $color-2 : rgb(70, 77, 89);
 $color-3 : rgb(3, 12, 25);
+
+$color-4 : rgb(84, 146, 247);
+$color-5 : rgb(47, 85, 145);
 
 @font-face{
   font-family: title-font;
@@ -43,6 +47,76 @@ $font-size-1 : (35/16) + em;
     style: dotted;
   }
 }
+
+@mixin list-title{
+  background-color: rgba(10, 17, 28, 0.5);
+  color: rgb(227, 235, 247);
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+@mixin fade-in-out{
+  @-webkit-keyframes fade-in-out{
+    from {background-color: rgba(10, 17, 28, 0.5);}
+    to {background-color: rgba(10, 17, 28, 0.9);}
+  }  
+  @keyframes fade-in-out{
+    from {background-color: rgba(10, 17, 28, 0.5);}
+    to {background-color: rgba(10, 17, 28, 0.9);}
+  }
+}
+
+@include fade-in-out;
+
+@mixin fade{
+  -webkit-animation-name: fade-in-out;
+  -webkit-animation-duration: 4s;
+  -webkit-animation-fill-mode: forwards;
+  animation-name: fade-in-out;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+}
+
+@mixin box-shadow($shadows...){
+  -moz-box-shadow: $shadows;
+  -webkit-box-shadow: $shadows;
+  box-shadow: $shadows;
+}
+
+@mixin shadows-blink{
+  @-webkit-keyframes shadows-blink{
+    from {
+      @include box-shadow(10px 10px 5px $color-4);
+    }
+    to{
+      @include box-shadow(15px 15px 5px $color-5);
+    }
+  }
+  @keyframes{
+    from {
+      @include box-shadow(10px 10px 5px $color-4);
+    }
+    to{
+      @include box-shadow(15px 15px 5px $color-5);
+    }
+  }
+}
+
+@include shadows-blink;
+
+@mixin shadows-blink-animation{
+  -webkit-animation-name: shadows-blink;
+  -webkit-animation-duration: 4s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  animation-name: shadows-blink;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  
+}
+
 
 body{
   background: $color-grey;
@@ -89,6 +163,21 @@ section{
       weight: 600;
     }
   }
+  h3{
+    color: $color-grey-dark;
+    font-size: 1.5em;
+  }
+  .articleTitle{
+    padding-top: 20px;
+  }
+  .specialTitle{
+    @extend .articleTitle;
+    border: 1px dashed $color-grey-dark;
+  }
+}
+
+.mainSection{
+  padding-left: 22px;
 }
 
 @for $i from 1 through 3{
@@ -110,6 +199,74 @@ section{
     clear: both; 
   }
 }
+
+section p {
+  span.intensePart{
+    font-weight: 600;
+  }
+  span.seriousPart{
+    @extend .intensePart;
+    color: $color-3;
+  }
+  span.catharsisPart{
+    @extend .seriousPart;
+    font-size: 2em;
+  }
+}
+
+section#section-5{
+  ul{
+    li{
+      width: 200px;
+      height: 200px;
+      float: left;
+      position: relative;
+      span{
+        @include list-title;
+        padding: 10px;
+      }
+      &:hover span{
+          @include fade;
+      }
+    }
+    @each $animal in fox, seal, mouse, marten{
+      li##{$animal}{
+        background-image: url(../img/#{$animal}.jpg);
+      }
+    }
+  }
+}
+
+section .shadowBox{
+  width: 300px;
+  height: 300px;
+  margin: 0 45px 45px 0;
+}
+
+.shadows1{
+  @include box-shadow(0px 4px 5px 5px $color-4)
+}
+.shadows2{
+  @include box-shadow(0px 40px 10px $color-5) 
+}
+.shadows3{
+  @include box-shadow(20px 20px  $color-5);
+  border: 3px dotted $color-1;
+}
+.shadows4{
+  @include box-shadow(0px 20px $color-4, 10px 20px $color-5);
+}
+.shadows5{
+  @include box-shadow(5px 15px 15px $color-5, 40px 40px 40px $color-4);
+}
+.shadows6{
+  @include box-shadow(-15px 15px 5px 5px $color-5, 15px -15px 5px 5px $color-4);
+}
+.shadows7{
+  @include shadows-blink-animation;
+}
+
+
 
 
 @media screen and (max-width: 400px){

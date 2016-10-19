@@ -38,6 +38,34 @@ table {
 @font-face {
   font-family: title-font;
   src: url("../font/BILLY ARGEL.otf"); }
+@-webkit-keyframes fade-in-out {
+  from {
+    background-color: rgba(10, 17, 28, 0.5); }
+  to {
+    background-color: rgba(10, 17, 28, 0.9); } }
+@keyframes fade-in-out {
+  from {
+    background-color: rgba(10, 17, 28, 0.5); }
+  to {
+    background-color: rgba(10, 17, 28, 0.9); } }
+@-webkit-keyframes shadows-blink {
+  from {
+    -moz-box-shadow: 10px 10px 5px #5492f7;
+    -webkit-box-shadow: 10px 10px 5px #5492f7;
+    box-shadow: 10px 10px 5px #5492f7; }
+  to {
+    -moz-box-shadow: 15px 15px 5px #2f5591;
+    -webkit-box-shadow: 15px 15px 5px #2f5591;
+    box-shadow: 15px 15px 5px #2f5591; } }
+@keyframes {
+  from {
+    -moz-box-shadow: 10px 10px 5px #5492f7;
+    -webkit-box-shadow: 10px 10px 5px #5492f7;
+    box-shadow: 10px 10px 5px #5492f7; }
+  to {
+    -moz-box-shadow: 15px 15px 5px #2f5591;
+    -webkit-box-shadow: 15px 15px 5px #2f5591;
+    box-shadow: 15px 15px 5px #2f5591; } }
 body {
   background: #999a9b;
   font-family: Helvetica, sans-sherif; }
@@ -72,6 +100,16 @@ section {
     color: #464d59;
     font-size: 2.1875em;
     font-weight: 600; }
+  section h3 {
+    color: #333435;
+    font-size: 1.5em; }
+  section .articleTitle, section .specialTitle {
+    padding-top: 20px; }
+  section .specialTitle {
+    border: 1px dashed #333435; }
+
+.mainSection {
+  padding-left: 22px; }
 
 #section-1 {
   padding-left: 10px; }
@@ -95,6 +133,87 @@ section {
     width: 50%; }
   section:after {
     clear: both; }
+
+section p span.intensePart, section p span.seriousPart, section p span.catharsisPart {
+  font-weight: 600; }
+section p span.seriousPart, section p span.catharsisPart {
+  color: #030c19; }
+section p span.catharsisPart {
+  font-size: 2em; }
+
+section#section-5 ul li {
+  width: 200px;
+  height: 200px;
+  float: left;
+  position: relative; }
+  section#section-5 ul li span {
+    background-color: rgba(10, 17, 28, 0.5);
+    color: #e3ebf7;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px; }
+  section#section-5 ul li:hover span {
+    -webkit-animation-name: fade-in-out;
+    -webkit-animation-duration: 4s;
+    -webkit-animation-fill-mode: forwards;
+    animation-name: fade-in-out;
+    animation-duration: 4s;
+    animation-fill-mode: forwards; }
+section#section-5 ul li#fox {
+  background-image: url(../img/fox.jpg); }
+section#section-5 ul li#seal {
+  background-image: url(../img/seal.jpg); }
+section#section-5 ul li#mouse {
+  background-image: url(../img/mouse.jpg); }
+section#section-5 ul li#marten {
+  background-image: url(../img/marten.jpg); }
+
+section .shadowBox {
+  width: 300px;
+  height: 300px;
+  margin: 0 45px 45px 0; }
+
+.shadows1 {
+  -moz-box-shadow: 0px 4px 5px 5px #5492f7;
+  -webkit-box-shadow: 0px 4px 5px 5px #5492f7;
+  box-shadow: 0px 4px 5px 5px #5492f7; }
+
+.shadows2 {
+  -moz-box-shadow: 0px 40px 10px #2f5591;
+  -webkit-box-shadow: 0px 40px 10px #2f5591;
+  box-shadow: 0px 40px 10px #2f5591; }
+
+.shadows3 {
+  -moz-box-shadow: 20px 20px #2f5591;
+  -webkit-box-shadow: 20px 20px #2f5591;
+  box-shadow: 20px 20px #2f5591;
+  border: 3px dotted #eaebed; }
+
+.shadows4 {
+  -moz-box-shadow: 0px 20px #5492f7, 10px 20px #2f5591;
+  -webkit-box-shadow: 0px 20px #5492f7, 10px 20px #2f5591;
+  box-shadow: 0px 20px #5492f7, 10px 20px #2f5591; }
+
+.shadows5 {
+  -moz-box-shadow: 5px 15px 15px #2f5591, 40px 40px 40px #5492f7;
+  -webkit-box-shadow: 5px 15px 15px #2f5591, 40px 40px 40px #5492f7;
+  box-shadow: 5px 15px 15px #2f5591, 40px 40px 40px #5492f7; }
+
+.shadows6 {
+  -moz-box-shadow: -15px 15px 5px 5px #2f5591, 15px -15px 5px 5px #5492f7;
+  -webkit-box-shadow: -15px 15px 5px 5px #2f5591, 15px -15px 5px 5px #5492f7;
+  box-shadow: -15px 15px 5px 5px #2f5591, 15px -15px 5px 5px #5492f7; }
+
+.shadows7 {
+  -webkit-animation-name: shadows-blink;
+  -webkit-animation-duration: 4s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  animation-name: shadows-blink;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; }
 
 @media screen and (max-width: 400px) {
   section p {
