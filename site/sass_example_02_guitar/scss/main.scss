@@ -1,0 +1,186 @@
+/**
+ *   Main SCSS
+ */
+
+@import "variables/variables";
+@import "mixins/mixins";
+
+/** DEBUGGING **/
+@mixin debug{
+  .container{
+    border: 1px solid red;
+  }
+  
+  .wrapper{
+    border: 1px solid blue;
+  }
+  [class^="col"]{
+    border: 1px solid green;
+  }
+}
+
+//@include debug;
+
+/** GENERAL STYLES **/
+*{
+  font-family: $font-main;
+  font-size: $font-size-main;
+  color: $color-main;
+}
+a, a:hover, a:visited{
+  text-decoration: none;
+}
+
+h2{
+  font-family: $font-main;
+  font-weight: 600;
+  font-size: $font-size-xxl;
+  color: $color-alternate-6;
+  text-transform: uppercase;
+  span{
+    font-weight: 200;
+    color: $color-alternate-6;
+    display: block;
+  }
+}
+
+
+
+
+/*
+ * HEADER
+ */
+.header{
+  padding: 22px 0;
+  .link{
+    margin-top: 8px;
+    border-left: 1px solid $color-alternate-5;
+    &:last-child{
+      border-right: 1px solid $color-alternate-5;
+    }
+  }
+  .link div{
+    min-height: 46px;
+    padding: 10px 0;
+    text-align: center;
+    img{
+      position: relative;
+      margin-right: 14px;
+    }
+  }
+  div.skype{
+    padding-top: 8px;
+    img{
+      top: 5px;
+    }
+  } 
+  .phone img{
+    top: 3px;
+  }
+  .social img{
+    margin: 0 3%;
+  }
+}
+
+/** NAVIGATION **/
+.navigation{
+  background-color: $color-main;
+  min-height: 100px;
+  z-index: 200;
+  position: relative;
+  @include box-shadow(0 30px 25px rgba(0,0,0,0.5));
+  a{
+    display: block;
+    font-size: $font-size-main;
+    text-transform: uppercase;
+    color: $color-alternate-6;
+    text-align: center;
+    height: 100px;
+    padding-top: 40px;
+    &:hover, &.selected{
+      color: $color-alternate-1;
+    }
+  }
+  div[class^="col-"]{
+    border-left: 1px solid $color-alternate-7;
+    &:last-child{
+      border-right: 1px solid $color-alternate-7;
+    }
+  }
+}
+
+/** PRESENTATION **/
+.presentation{
+  min-height: 860px;
+  background: $color-alternate-2;
+  z-index: -1;
+  position: relative;
+  .video{
+    width: 170px;
+    height: 122px;
+    background: url('../img/presentation/video.jpg');
+    margin: 20px 0 0 auto;
+  }
+  .content{
+    text-align: right;
+    position: relative;
+    top: 484px;
+  }
+}  
+
+/** PAGINATION **/
+.paginationContainer{
+  .pagination .page, a{
+      width: 16px;
+      height: 16px;
+      display: block;
+  }
+}
+
+/** PAGINATION - PRESENTATION **/
+.presentation .paginationContainer{
+  $height : 192px;
+  $pagination-height: 68px;
+  $control-spacing: ($height - $pagination-height) / 2 - 15;
+  
+  height: $height;
+  width: 16px;
+  position: absolute;
+  right: 38px;
+  top: 50%;
+  margin-top: -($height/2);
+  
+  .pagination{
+    height: $pagination-height;
+  }
+  
+  a.fa-angle-up{
+   background:{
+     image: url('../img/presentation/pagination_up.jpg');
+     position: 50% 0;
+     repeat: no-repeat;
+   } 
+   margin-bottom: $control-spacing;
+   
+  }
+  a.fa-angle-down{
+    background:{
+      image: url('../img/presentation/pagination_down.jpg');
+      position: 50% 100%;
+      repeat: no-repeat;
+    }
+    margin-top: $control-spacing;
+  }
+  .page{
+    margin-bottom: ($pagination-height - (3 * 16)) / 2;
+    background:{
+      image: url('../img/presentation/pagination_page.jpg');
+      position: 0% 0%;
+      repeat: no-repeat;
+    }
+    &.selected{
+      background-image: url('../img/presentation/pagination_page_selected.jpg');
+    }
+  }
+  
+}

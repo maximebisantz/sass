@@ -1,0 +1,36 @@
+/**
+ *   Variables Declaration
+ */
+
+
+// Grid 
+$grid-columns: 12;
+$grid-max-width: 65em;
+$grid-spacing: 0%;
+$grid-padding: 1%;
+
+// Breakpoints
+$breakpoint-small: "only screen and (min-width : 20em)";
+$breakpoint-medium: "only screen and (min-width: 30em)";
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,400,700');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+$font-main: 'Roboto', sans-sherif;
+$font-alternate: 'Lato', sans-sherif;
+
+$font-size-main : (16/16) + em;
+$font-size-bigger : (18/16)+ em;
+$font-size-xxl : (70/16) + em;
+
+
+// Colors
+$color-main: rgb(3, 47, 62);
+$color-alternate-1: rgb(171, 152, 122);
+$color-alternate-2: rgb(158, 158, 158);
+$color-alternate-3: rgb(248, 249, 251);
+$color-alternate-4: rgb(13, 53, 66);
+$color-alternate-5: rgb(213, 213, 213);
+$color-alternate-6: rgb(255, 255, 255);
+$color-alternate-7: rgb(13, 57, 72);
+

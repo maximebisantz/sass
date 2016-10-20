@@ -1,0 +1,133 @@
+/**
+ *   Main SCSS
+ */
+/**
+ *   Variables Declaration
+ */
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,400,700");
+@import url("https://fonts.googleapis.com/css?family=Lato");
+/*
+ *  MIXINS Declaration
+ */
+/** DEBUGGING **/
+/** GENERAL STYLES **/
+* {
+  font-family: "Roboto", sans-sherif;
+  font-size: 1em;
+  color: #032f3e; }
+
+a, a:hover, a:visited {
+  text-decoration: none; }
+
+h2 {
+  font-family: "Roboto", sans-sherif;
+  font-weight: 600;
+  font-size: 4.375em;
+  color: white;
+  text-transform: uppercase; }
+  h2 span {
+    font-weight: 200;
+    color: white;
+    display: block; }
+
+/*
+ * HEADER
+ */
+.header {
+  padding: 22px 0; }
+  .header .link {
+    margin-top: 8px;
+    border-left: 1px solid #d5d5d5; }
+    .header .link:last-child {
+      border-right: 1px solid #d5d5d5; }
+  .header .link div {
+    min-height: 46px;
+    padding: 10px 0;
+    text-align: center; }
+    .header .link div img {
+      position: relative;
+      margin-right: 14px; }
+  .header div.skype {
+    padding-top: 8px; }
+    .header div.skype img {
+      top: 5px; }
+  .header .phone img {
+    top: 3px; }
+  .header .social img {
+    margin: 0 3%; }
+
+/** NAVIGATION **/
+.navigation {
+  background-color: #032f3e;
+  min-height: 100px;
+  z-index: 200;
+  position: relative;
+  -webkit-box-shadow: 0 30px 25px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 30px 25px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 30px 25px rgba(0, 0, 0, 0.5); }
+  .navigation a {
+    display: block;
+    font-size: 1em;
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+    height: 100px;
+    padding-top: 40px; }
+    .navigation a:hover, .navigation a.selected {
+      color: #ab987a; }
+  .navigation div[class^="col-"] {
+    border-left: 1px solid #0d3948; }
+    .navigation div[class^="col-"]:last-child {
+      border-right: 1px solid #0d3948; }
+
+/** PRESENTATION **/
+.presentation {
+  min-height: 860px;
+  background: #9e9e9e;
+  z-index: -1;
+  position: relative; }
+  .presentation .video {
+    width: 170px;
+    height: 122px;
+    background: url("../img/presentation/video.jpg");
+    margin: 20px 0 0 auto; }
+  .presentation .content {
+    text-align: right;
+    position: relative;
+    top: 484px; }
+
+/** PAGINATION **/
+.paginationContainer .pagination .page, .paginationContainer a {
+  width: 16px;
+  height: 16px;
+  display: block; }
+
+/** PAGINATION - PRESENTATION **/
+.presentation .paginationContainer {
+  height: 192px;
+  width: 16px;
+  position: absolute;
+  right: 38px;
+  top: 50%;
+  margin-top: -96px; }
+  .presentation .paginationContainer .pagination {
+    height: 68px; }
+  .presentation .paginationContainer a.fa-angle-up {
+    background-image: url("../img/presentation/pagination_up.jpg");
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    margin-bottom: 47px; }
+  .presentation .paginationContainer a.fa-angle-down {
+    background-image: url("../img/presentation/pagination_down.jpg");
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    margin-top: 47px; }
+  .presentation .paginationContainer .page {
+    margin-bottom: 10px;
+    background-image: url("../img/presentation/pagination_page.jpg");
+    background-position: 0% 0%;
+    background-repeat: no-repeat; }
+    .presentation .paginationContainer .page.selected {
+      background-image: url("../img/presentation/pagination_page_selected.jpg"); }
+
+/*# sourceMappingURL=main.css.map */
