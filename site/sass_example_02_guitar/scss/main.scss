@@ -6,7 +6,7 @@
 @import "mixins/mixins";
 
 /** DEBUGGING **/
-@mixin debug{
+@mixin debugStyles{
   .container{
     border: 1px solid red;
   }
@@ -19,7 +19,9 @@
   }
 }
 
-//@include debug;
+@if $debug{
+  @include debugStyles;
+}
 
 /** GENERAL STYLES **/
 *{
@@ -43,7 +45,120 @@ h2{
     display: block;
   }
 }
+h3{
+  font-size: $font-size-header;
+}
+h4{
+  font-size: $font-size-bigger;
+  @include hyphens;
+  text-transform: uppercase;
+}
 
+/** RULER **/
+hr{
+  border: none;
+  border-bottom: 2px solid $color-alternate-1;
+  width: 30px;
+  margin: 30px auto;
+}
+
+p{
+  font-size: $font-size-main;
+  font-weight: 200;
+  color: $color-font-main;
+}
+
+.spacer{
+  height: $spacer-height;  
+}
+
+/** BUTTONS **/
+[class^="button"]{
+  @include border-box;
+  $height: 62px;
+  
+  display: block;
+  background: {
+    position: 50% 50%;
+    repeat: no-repeat;
+  };
+  height: $height;
+  text-align: center;
+  line-height: $height; // centers the text vertically
+  font-weight: bold;
+  // Widths
+  &[class*="large"]{
+    @include box-width(3);
+  }
+  &[class*="small"]{
+    @include box-width(1);
+  } 
+  //colors
+  &[class*="1"]{
+    background-color: $color-main;
+    color: $color-alternate-6;
+    &[class*="alternate"]{
+      border-color: $color-main;
+      color: $color-main;
+    }
+  }
+  &[class*="2"]{
+    background-color: $color-alternate-1;
+    color: $color-alternate-6;
+    &[class*="alternate"]{
+      border-color: $color-alternate-1;
+      color: $color-alternate-1;
+    }
+  }
+  &[class*="alternate"]{
+    $border-width: 3px;
+    background-color: transparent;
+    border:{
+      style: solid;
+      width: $border-width;
+    }
+    line-height: $height - ($border-width * 2);
+  }
+}
+
+.icon{
+  font-size: $font-size-small;
+  padding-left: 25px;
+  background:{
+    repeat: no-repeat;
+    position: 0 50%;
+  }
+}
+
+.folder{
+  @extend .icon;
+  background:{
+    image: url('../img/general/folder.jpg');
+  }
+  color: $color-alternate-1;
+}
+
+.projectsPortfolio .folder{
+  background-image: url('../img/projects/folder.jpg');
+  color: $color-alternate-6;
+}
+
+.date{
+  @extend .icon;
+  background:{
+    image: url('../img/general/date.jpg');
+  }
+  color: $color-alternate-8;
+}
+
+//** ARTICLE CONTAINER + STYLES **//
+.articleContainer{
+  p{
+    font-family: $font-alternate;
+    font-size: $font-size-main;
+    line-height: 1.5em;
+  }
+}
 
 
 
@@ -139,48 +254,266 @@ h2{
 
 /** PAGINATION - PRESENTATION **/
 .presentation .paginationContainer{
-  $height : 192px;
-  $pagination-height: 68px;
-  $control-spacing: ($height - $pagination-height) / 2 - 15;
-  
-  height: $height;
-  width: 16px;
+
+  @include pagination(up);
+
   position: absolute;
   right: 38px;
   top: 50%;
-  margin-top: -($height/2);
-  
-  .pagination{
-    height: $pagination-height;
-  }
-  
-  a.fa-angle-up{
+  margin-top: -96px;
+
+  a.previous{
    background:{
      image: url('../img/presentation/pagination_up.jpg');
-     position: 50% 0;
-     repeat: no-repeat;
    } 
-   margin-bottom: $control-spacing;
-   
   }
-  a.fa-angle-down{
+  a.next{
     background:{
       image: url('../img/presentation/pagination_down.jpg');
-      position: 50% 100%;
-      repeat: no-repeat;
     }
-    margin-top: $control-spacing;
   }
   .page{
-    margin-bottom: ($pagination-height - (3 * 16)) / 2;
     background:{
       image: url('../img/presentation/pagination_page.jpg');
-      position: 0% 0%;
-      repeat: no-repeat;
     }
-    &.selected{
+    &.selected{ 
       background-image: url('../img/presentation/pagination_page_selected.jpg');
     }
   }
   
 }
+
+/** TOP BUTTON **/
+.topButton{
+  $height: 5px;
+  height: $height;
+  text-align: center;
+  margin-top: -$height;
+  a{
+    width: 186px;
+    height: 41px;
+    top: -41px + $height;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+/** SECTION HEADER **/
+.sectionHeader{
+  text-align: center;
+}
+.contentDescription{
+  text-align: center;
+  margin-bottom: 150px;
+}
+
+
+/** CONTENT - SERVICES **/
+.services{
+  background: $color-alternate-3;
+}
+.services .topButton{
+  background:{
+    color: $color-alternate-3;
+  }
+  a{
+    background:{ 
+      image: url('../img/services/button_top_icon.jpg'), url('../img/services/button_top_background.png') ;
+      repeat: no-repeat;
+      position: 86px 18px, 50% 0;
+    }
+  }
+}
+.serviceBox{
+  text-align: center;
+}
+.serviceLogo{
+  $size: 140px;
+  height: $size;
+  width: $size;
+  border: 2px solid $color-alternate-1;
+  border-radius: $size;
+  margin-bottom: 30px;
+  background:{
+    repeat: no-repeat;
+    position: 50% 50%;
+  }
+  
+  @each $service in recording, certificate, skype{
+    &.service#{$service}{
+      background:{
+        image: url('../img/services/#{$service}.jpg');
+      }
+    }
+  }
+  
+}
+
+/** LESSONS **/
+.lessons{
+  background: $color-main;
+  .title{
+    margin-bottom: 80px;
+  }
+
+}
+.lesson{
+  background:{
+    image: url('../img/lessons/lesson_border.jpg');
+    repeat: repeat-y;
+    position: 38px 0;
+  }
+  padding-bottom: 60px;
+  margin-bottom: 20px;
+  &:last-child{
+    background: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  p{
+    color: $color-alternate-6;
+    text-transform: uppercase;
+    font-weight: 600;
+    @include hyphens;
+    @for $i from 1 through 22{
+      $size: $i * 5;
+      &.p-#{$size}{
+        width: 1% * $size;
+      }
+    }
+  }
+  .icon{
+    min-height: 76px;
+    background:{
+      position: 0 0;
+      repeat: no-repeat;
+    }
+  }
+  @for $i from 1 through 4{
+    &.lesson-#{$i}{
+      .icon{
+        background-image: url('../img/lessons/lesson-#{$i}.jpg');
+      }
+    }
+  }
+}
+
+
+/** PROJECTS **/
+.projects{
+  background: $color-alternate-3;
+}
+/** PROJECT VIEWER **/
+.projectViewer{
+  background: $color-alternate-6;
+  .control{
+    a{
+      width: 62px;
+      height: 62px;
+      margin-top: -62px;
+      display: block;
+      background: $color-alternate-6 url('../img/projects/control_cross.jpg') no-repeat 50% 50%;
+    }
+  }
+  .viewer{
+    background: $color-alternate-2;
+    height: 570px;
+    width: 100%;
+  }
+  .paginationContainer{
+    @include pagination(down);
+    @each $function in page, selected, previous, next{
+      .#{$function}{
+        background-image: url('../img/projects/pagination_#{$function}.jpg');
+      }
+    }
+    margin: 32px auto;
+  }
+  .folderContainer{
+    margin-top: 77px;
+    margin-bottom: 37px;
+    @include clearfix;
+    .folder{
+      float: left;
+    }
+    .date{
+      float: right;
+    }
+  }
+  hr{
+    margin-left: 0;
+  }
+  p{
+    margin-bottom: 45px;
+  }
+  .social{
+    margin-top: 75px;
+    p{
+      color: $color-alternate-8;
+      font-size: $font-size-small;
+      margin: 0;
+    }
+    a{
+      width: 21px;
+      height: 21px;
+      display: block;
+      float: left;
+      margin-right: 28px;
+    }
+    @each $media in facebook, tweeter, google{
+      .#{$media}{
+        background-image: url('../img/projects/#{$media}.jpg');
+      }
+    }
+  }
+}
+
+/** PROJECTS BLOCKS **/
+.project{
+  $height: 370px;
+  height: $height;
+  background: $color-alternate-2;
+  padding-top: 1px; // fix for collapsing margins
+  &-small{
+    @extend .project;
+    $small-height : $height / 2;
+    $space : 15px; 
+    height: $small-height - ($space);
+    margin-bottom: $space * 2;
+    &-last{
+      margin-bottom: 0;
+    }
+  }
+  .folder{
+    margin: 19px 0 0 21px;
+  }
+}
+
+.projects .controlContainer{
+  margin-top: 58px;
+  .next{
+    background-image: url('../img/projects/next.jpg');
+  }
+  .previous{
+    background-image: url('../img/projects/previous.jpg');
+  }
+}
+
+/** CALL US **/
+.callUs{
+  border: 1px solid red;
+  background: $color-alternate-2;
+  h2{
+    
+  }
+  h2, span{
+    color: $color-main;
+    font-size: $font-size-header-small;
+    span{
+      color: $color-main;
+      font-size: 10px;
+    }
+  }
+}
+

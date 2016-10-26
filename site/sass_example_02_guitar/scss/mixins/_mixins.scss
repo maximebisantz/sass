@@ -13,3 +13,117 @@
   -moz-box-shadow: $shadows;
   box-shadow: $shadows;
 }
+
+@mixin hyphens{
+    hyphens: auto; 
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    // Chrome hack
+    &:not(*:root){
+      word-break: break-all;
+    }
+}
+
+@mixin pagination($direction: up){
+  $element-size: 16px;
+  
+  $height : 192px;
+  $width: $element-size;
+  
+  $pagination-height: 68px;
+  $pagination-width: $element-size;
+  
+  $control-spacing: ($height - $pagination-height) / 2 - 16;
+  
+  @if $direction == down {
+    $width: 370px;
+    $pagination-width: 68px;
+    $pagination-height: $element-size;
+    $height: $element-size;
+    $control-spacing: ($width - $pagination-width) / 2 - 16;
+  }
+
+  height: $height;
+  width: $width;
+
+  //margin-top: -($height/2);
+
+  @if $direction == down{
+    .page, a, .pagination{
+      float: left;
+    }
+  }
+  
+  .page, a{
+    width: $element-size;
+    height: $element-size;
+  }
+  
+  .pagination{
+    height: $pagination-height;
+    width: $pagination-width;
+  }
+  .page{
+    @if $direction == up{
+      margin-bottom: ($pagination-height - (3 * $element-size)) / 2;
+    }
+    @if $direction == down{
+      margin-right: ($pagination-width - (3 * $element-size)) / 2;
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+  }
+  
+  
+  a{
+    background:{
+      position: 50% 50%;
+      repeat: no-repeat;
+    }
+    &.previous{
+      margin-bottom: $control-spacing;
+      background-position: 50% 0;
+      @if $direction == down{
+        margin-bottom: 0;
+        margin-right: $control-spacing;
+      }
+    }
+    &.next{
+      margin-top: $control-spacing;
+      background-position: 0 50%;
+      @if $direction == down{
+        margin-top: 0;
+        margin-left: $control-spacing;
+      }
+    }
+  }
+}
+
+@mixin clearfix{
+  *zoom: 1;
+  &:before,
+  &:after{
+    content: " ";
+    display: table;
+  }
+  &:after{
+    clear: both;
+  }
+}
+
+@mixin box-width($nbOfElm){
+  // (helper) BOX WIDTH
+  $box-size: $document-width / 12;
+  
+  $padding: $spacing * 2;
+  
+  $box-width : ($document-width / 12) - ($spacing * 2);
+  
+  $box-width : ($box-size * $nbOfElm) - $padding;
+  
+  width: $box-width + px;
+  
+}
+
