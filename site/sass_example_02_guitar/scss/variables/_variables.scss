@@ -21,17 +21,17 @@ $breakpoint-medium: "only screen and (min-width: 30em)";
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,400,700');
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,700');
 $font-main: 'Roboto', sans-sherif;
 $font-alternate: 'Lato', sans-sherif;
 
-$font-size-main : (16/16) + em;
-$font-size-small: (14/16) + em;
-$font-size-header : (26/16) + em;
-$font-size-bigger : (18/16)+ em;
-$font-size-xxl : (70/16) + em;
+$font-size-main : (16/16) * 1em; // has to be declared like this otherwise it will be only a string : (16/16) + em;
+$font-size-small: (14/16) * 1em;
+$font-size-header : (26/16) * 1em;
+$font-size-bigger : (18/16) * 1em;
+$font-size-xxl : (70/16) * 1em;
 
-$font-size-header-small: (30/16) + em;
+$font-size-header-small: (30/16) * 1em;
 
 
 // Colors
@@ -46,6 +46,8 @@ $color-alternate-7: rgb(13, 57, 72);
 $color-alternate-8: rgb(191, 191, 191);
 
 $color-font-main: rgb(97, 97, 97);
+
+$color-font-footer: rgb(83, 106, 114);
 
 
 // Spacer

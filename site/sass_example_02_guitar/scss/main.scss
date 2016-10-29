@@ -502,18 +502,424 @@ p{
 
 /** CALL US **/
 .callUs{
-  border: 1px solid red;
   background: $color-alternate-2;
-  h2{
-    
+  padding: 50px 0;
+  .title{
+    min-height: 104px;
+    padding-left: 141px;
+    background:{
+      image: url('../img/callus/skype.png');
+      position: top left;
+      repeat: no-repeat;
+    }
   }
-  h2, span{
-    color: $color-main;
+  h2{
     font-size: $font-size-header-small;
-    span{
+    &, span{
       color: $color-main;
-      font-size: 10px;
+    }
+  }
+  .flexContainer{
+    @include flex-container;
+    [class^="col"]{
+      align-self: center;
     }
   }
 }
+
+/** NEWS **/
+.latestNews{
+  background: $color-alternate-3;
+}
+.newsViewer{
+  margin-bottom:76px; 
+  $news-container-height: 484px;
+  
+  [class*="newscontainer"]{
+    //padding-bottom: 1px; // collapsing margin fix
+    background: $color-alternate-6;
+    &[class*="large"]{
+      min-height: $news-container-height;
+      @include border-radius(0 0 5px 0);
+      $shadow-color: rgba($color-alternate-2, 0.5);
+      @include box-shadow(0 1px $shadow-color);
+    }
+    &[class*="small"]{
+      $spacing: 56px;
+      $total-height: $news-container-height - ($spacing * 2);
+      
+      height: round($total-height / 3);
+      margin-bottom: $spacing;
+      &.last{
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  .news-picture{
+    background: $color-alternate-2;
+    width: 100%;
+    height: 186px;
+  }
+  
+  .news-info{
+    float: right;
+  }
+  
+  .news-talk, .news-date{
+    @include border-box;
+    width: 62px;
+    height: 62px;
+    padding-top: 35px;
+    text-align: center;
+    color: $color-alternate-6;
+    background:{
+      position: center 9px;
+      repeat: no-repeat;
+    }
+  }
+  .news-talk{
+    background-color: $color-alternate-1;
+    background-image: url('../img/news/chat.jpg');
+  }
+  .news-date{
+    background-color: $color-main;
+    background-image: url('../img/news/date.jpg');
+  }
+  
+  .news-content{
+    padding: 25px 20px 0 20px;
+    hr{
+      @include box-width(3);
+      margin: 28px auto 28px 0;
+    }
+    p{
+      margin-bottom: 30px;
+    }
+    .folderContainer{
+      padding-bottom: 20px;
+      @include clearfix;
+    }
+    .followLink{
+      width: 16px;
+      height: 17px;
+      background:{
+        image: url('../img/news/follow.jpg');
+        position: center center;
+        repeat: no-repeat;
+      }
+      display: block;
+      float: right;
+    }
+    .folder{
+      float: left;
+    }
+  }
+  
+  [class*="newscontainer-small"]{
+    @include clearfix;
+    $shadow-color: rgba($color-alternate-2, 0.5);
+    @include box-shadow(0 1px $shadow-color);
+    float: left;
+    margin-bottom: 10px;
+    .news-picture, .news-content, .news-info{
+      float: left;
+    }
+    .news-picture{
+      height: 100%;
+      width: 25%;
+    }
+    .news-content{
+      width: 60%;
+      h4{
+        margin-bottom: 3%;
+      }
+    }
+    .news-info{
+      width: 15%;
+      *{
+        float: right;
+      }
+    }
+  }
+  
+}
+.smallNewsContainer div[class^="col"]{
+ padding: 0; // remove extra padding from nested grid
+}
+//** NEWS - PAGINATION **//
+.smallNewsContainer {
+  position: relative;
+
+  .paginationContainer{
+    @include pagination(up);
+  
+    position: absolute;
+    right: - 21px;
+    top: 50%;
+    
+    @each $item in previous, next, page, selected{
+      .#{$item}{
+        background-image: url('../img/news/pagination_#{$item}.jpg');
+      }
+    }
+    
+  }
+}
+
+//** NEWS - BUTTON **//
+.latestNews .buttonContainer {
+  [class^="button"]{
+    margin:auto; // centering the button
+  }
+}
+
+//** TESTIMONIALS **//
+.testimonials{
+  background:{
+    image: url('../img/testimonials/background.jpg');
+    repeat: repeat;
+    position: top left;
+  }
+  hr{
+    margin-bottom: 75px;
+  }
+}
+//** TESTIMONIALS - VIEWER **//
+.testimonialsViewer{
+  @include flex-container;
+  
+  .buttoncontainer{
+    align-self: center;
+    flex: 1;
+    margin-bottom: 50px;
+    .left{
+      background-image: url('../img/testimonials/button_left.png');
+    }
+    .right{
+      background-image: url('../img/testimonials/button_right.png');
+    }
+  }
+  
+  .content{
+    @include flex-container;
+    flex-direction: column;
+    text-align: center;
+    
+    .picture{
+      @include box-square(2);
+      margin: 0 auto 40px auto;
+      background: $color-alternate-2;
+      border: 3px solid $color-alternate-1;
+      @include border-radius(50%);
+    }
+    
+    p{
+      font-style: italic;
+      line-height: 1.5em;
+      margin-bottom: 40px;
+      padding: 0 5%;
+      font-family: $font-alternate;
+    }
+    
+    h4{
+      text-transform: none;
+      margin-bottom: 13px;
+      font-size: ceil(($font-size-bigger * 1.33) * 100) / 100; // orphean font-size. 1.5em or 24px
+    }
+    
+    h5{
+      color: $color-alternate-1;
+      font-weight: 400;
+      font-size: $font-size-bigger; 
+    }
+    
+  }
+  
+}
+
+//** MAP **//
+.map .topButton{
+  background: $color-alternate-1;
+  a{
+    width: 186px;
+    background:{
+      image: url('../img/map/icon_marker.png'), url('../img/map/button_background.png');
+      repeat: no-repeat;
+      position: (186px/2 - floor(13/2)) 11px, 50% 0;
+    }
+  }
+}
+.mapContainer{
+  background: $color-alternate-2;
+  height: 655px;
+  position: relative;
+  
+  .bubbleContainer{
+    position: absolute;
+    top: 163px;
+    left: 45.41%;
+    @include border-box;
+    width: 370px;
+    background: $color-alternate-6;
+    padding: 23px 0;
+    @include box-shadow(0 0 10px rgba(0,0,0,0.5));
+    
+    .tail{
+      height: 90px;
+      width: 40px;
+      position: absolute;
+      bottom: -90px;
+      left: 50%;
+      margin-left: -20px;
+      
+      // FF & IE -- fallback, solid image.
+      background: url('../img/map/tail.png') no-repeat top center;
+      
+    }
+    
+    @supports (transform: rotate(225deg)){
+      .tail{
+        $width: 40px;
+        $height: 90px;
+        width: $width;
+        height: $height;
+        background: Transparent;
+        overflow: hidden;
+        &:before{
+          content: '';
+          position: absolute;
+          width: $width  * 3;
+          height: $width * 3;
+          background: $color-alternate-6;
+          transform-origin: 0% 0%;
+          
+          transform: rotate(225deg) skew(35deg, 35deg);
+          
+          left: $width / 2;
+          top: $height;
+          
+          @include box-shadow(0 0 10px rgba(0,0,0,0.5));
+          
+        }
+      }
+      
+      .close{
+        width: 12px;
+        height: 13px;
+        display: block;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background:{
+          image: url('../img/map/close.jpg');
+          repeat: no-repeat;
+          position: center center;
+        }
+      }
+      
+      .logo{
+        width: 30%;
+        height: 57px;
+        background:{
+          image: url('../img/map/logo.jpg');
+          position: top center;
+          repeat: no-repeat;
+        }
+        float: left;
+      }
+      
+      .content{
+        float: left;
+        width: 70%;
+        h4, p, span{
+          font-family: $font-alternate;
+        }
+        p{
+          color: $color-main;
+          line-height: 1.6em;
+          span{
+            display: block;
+          }
+        }
+      }
+    }
+  } 
+}
+
+/** FOOTER **/
+footer{
+  .spacer{
+    height: 100px;
+  }
+  /** FOOTER - TOP **/
+  .footer-top{
+    background: $color-alternate-4;
+  }
+  *{
+    color: $color-alternate-6;
+  }
+  p, li {
+    margin-bottom: 30px;
+    font-family: $font-alternate;
+    font-size: $font-size-small;
+    line-height: 1.5em;
+  }
+  hr{
+    margin-left: 0;
+    margin-top: 24px;
+  }
+  .logo{
+    width: 48px;
+    height: 60px;
+    background: url('../img/footer/logo.jpg') no-repeat top left;
+    margin-bottom: 23px;
+  }
+  ul{
+    list-style: none;
+    li{
+      padding-left: 35px;
+      background:{
+        position: top left;
+        repeat: no-repeat;
+      }
+      @each $item in email, phone, map, fax{
+        &.#{$item}{
+          background-image: url('../img/footer/#{$item}.jpg');
+        }
+      }
+    }
+  }
+  .news{
+    .date{
+      background: none;
+      padding: 0;
+      color: $color-alternate-1;
+      margin-bottom: 0;
+    }
+    h5{
+      text-transform: uppercase;
+      font-size: $font-size-small;
+    }
+  }
+  
+  /** FOOTER - BOTTOM **/
+  .footer-bottom{
+    background: $color-main;
+    padding: 47px 0;
+    p{
+      color: $color-font-footer;
+      margin:0;
+    }
+    .social{
+      text-align: right;
+      display: flex;
+      a{
+        flex: 1;
+      }
+    }
+  }
+}
+
+
 

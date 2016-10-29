@@ -46,8 +46,11 @@
 
   height: $height;
   width: $width;
+  
+  @if $direction == up{
+    margin-top: -($height/2);
+  }
 
-  //margin-top: -($height/2);
 
   @if $direction == down{
     .page, a, .pagination{
@@ -113,17 +116,85 @@
   }
 }
 
+@function _block-size($nbOfElements){
+  
+  $block: $document-width / 12;
+  $padding: $spacing * 2;
+  $block-size: ($block * $nbOfElements) - $padding;
+  
+  @return $block-size;
+}
+
 @mixin box-width($nbOfElm){
   // (helper) BOX WIDTH
-  $box-size: $document-width / 12;
-  
-  $padding: $spacing * 2;
-  
-  $box-width : ($document-width / 12) - ($spacing * 2);
-  
-  $box-width : ($box-size * $nbOfElm) - $padding;
-  
-  width: $box-width + px;
-  
+  width: _block-size($nbOfElm) + px;
+}
+
+@mixin box-height($nbOfElm){
+  height: _block-size($nbOfElm) + px;
+}
+
+@mixin box-square($nbOfElm){
+  @include box-width($nbOfElm);
+  @include box-height($nbOfElm);
+}
+
+@mixin flex-container{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex($size:1){
+  -webkit-box-flex: $size;
+  -moz-box-flex: $size;
+  -webkit-flex: $size;
+  -ms-flex: $size;
+  flex: $size;
+}
+
+@mixin flex-align-self($align:center){
+  align-self: $align;
+}
+
+@mixin border-radius($radius...){
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@function pow ($base, $exp) {
+    @if $exp == floor($exp) {
+        $r: 1;
+        $s: 0;
+        @if $exp < 0 {
+            $exp: $exp * -1;
+            $s: 1;
+        }
+        @while $exp > 0 {
+            @if $exp % 2 == 1 {
+                $r: $r * $base;
+            }
+            $exp: floor($exp * 0.5);
+            $base: $base * $base;
+        }
+        @return if($s != 0, 1 / $r, $r);
+    } @else {
+        @return exp(log($base) * $exp);
+    }
+}
+
+@function sqrt ($x) {
+    @if $x < 0 {
+        @warn "Argument for `sqrt()` must be a positive number.";
+        @return null;
+    }
+    $ret: 1;
+    @for $i from 1 through 24 {
+        $ret: $ret - (pow($ret, 2) - $x) / (2 * $ret);
+    }
+    @return $ret;
 }
 
